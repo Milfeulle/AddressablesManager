@@ -30,7 +30,10 @@ namespace AddressablesManagement
 
                 //await AddressablesManager.Instance.PreloadDependencies("Main2");
 
-                await AddressablesManager.Instance.OnlyLoadScene("Main2", LoadSceneMode.Additive);
+                for (int i = 0; i < 100; i++)
+                {
+                    await AddressablesManager.Instance.InstantiateGameObject("TestObject");
+                }
 
                 //monk.Instantiate<GameObject>(new Vector3(145.54f, -7.58f, 0), Quaternion.identity);
 

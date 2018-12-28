@@ -17,7 +17,7 @@ namespace AddressablesManagement
         private readonly object _opLock = new object();
 
         private const long MAX_TIMEOUT = 10000;
-        private const int TASK_DELAY = 1;
+        private const int TASK_DELAY = 9999;
 
         List<object> _objectsToLoadByLabel = new List<object>(100);
         GameObject _gameObjectToLoad;
@@ -28,9 +28,10 @@ namespace AddressablesManagement
         bool _loadingScene;
         bool _unloadingScene;
         private bool _loadingGameObject;
-        private int _currentTaskId = 0;
+        [SerializeField] private int _currentTaskId = 0;
 
-        private ConcurrentObjectPool<ICancellableTask> taskPool = new ConcurrentObjectPool<ICancellableTask>();
+        //private ConcurrentObjectPool<ICancellableTask> taskPool = new ConcurrentObjectPool<ICancellableTask>();
+        public List<ICancellableTask> taskPool;
 
         #region PROPERTIES
         /// <summary>
@@ -70,29 +71,21 @@ namespace AddressablesManagement
             {
                 Destroy(this);
             }
-        }
 
-        //private void Update()
-        //{
-        //    Debug.Log("current task id = " + _currentTaskId);
-        //    Debug.Log("current task count = " + _tasks.Count);
-        //}
+            taskPool = new List<ICancellableTask>(50);
+        }
 
         #region UTILITY         
         private void Wait(int delay)
         {
-            //if (_tasks[taskID].token.IsCancellationRequested)
-            //{
-            //    _tasks[taskID].token.ThrowIfCancellationRequested();
-            //}
-
             Task.Delay(delay);
         }
 
         private async Task RunTask(Task task)
         {
             CancellableTask cancellableTask = new CancellableTask(task, task.Id);
-            taskPool.Release(cancellableTask);
+            _currentTaskId++;
+            taskPool.Add(cancellableTask);
 
             try
             {
@@ -103,8 +96,8 @@ namespace AddressablesManagement
                 Debug.LogFormat("Task {0} cancelled.", cancellableTask.ID);
             }
 
-            //taskPool.Get();
-            cancellableTask.tokenSource.Dispose();
+            taskPool.Remove(cancellableTask);
+            cancellableTask.TokenSource.Dispose();
         }
 
         private async Task<T> RunTask<T>(Task<T> task)
@@ -112,10 +105,12 @@ namespace AddressablesManagement
             T obj = default(T);
 
             CancellableTask<T> cancellableTask = new CancellableTask<T>(task, task.Id);
-            taskPool.Release(cancellableTask);
+            _currentTaskId++;
+            //taskPool.Release(cancellableTask);
+            taskPool.Add(cancellableTask);
 
             try
-            {
+            {                
                 obj = await Task.Run(() => cancellableTask.task, cancellableTask.Token);
             }
             catch (OperationCanceledException)
@@ -123,8 +118,8 @@ namespace AddressablesManagement
                 Debug.LogFormat("Task {0} cancelled.", cancellableTask.ID);
             }
 
-            //taskPool.Get();
-            cancellableTask.tokenSource.Dispose();
+            taskPool.Remove(cancellableTask);
+            cancellableTask.TokenSource.Dispose();
 
             return obj;
         }
@@ -319,7 +314,7 @@ namespace AddressablesManagement
 
             // Thread
             Scene newScene;
-            newScene = await RunTask(Task.Run(() => GetLoadedScene(_currentTaskId++)));
+            newScene = await RunTask(Task.Run(() => GetLoadedScene(_currentTaskId)));
             return newScene;
         }
 
@@ -351,7 +346,7 @@ namespace AddressablesManagement
         /// <summary>
         /// Instantiates a gameobject in a given position and rotation in the world.
         /// </summary>
-        /// <param name="path">Project path where the gameobject resides.</param>
+        /// <param name="path">Addressables</param>
         /// <param name="position">Position in the world to instantiate the gameobject.</param>
         /// <param name="rotation">Rotation to instantiate the gameobject.</param>
         /// <returns>Returns the gameobject set to instantiate.</returns>
@@ -584,7 +579,11 @@ namespace AddressablesManagement
 
         private void OnApplicationQuit()
         {
-            //_tokenSource.Cancel();
+            foreach (ICancellableTask task in taskPool)
+            {
+                task.TokenSource.Cancel();
+            }
+
             StopAllCoroutines();
         }
 
@@ -593,15 +592,15 @@ namespace AddressablesManagement
         {
             public int ID { get; set; }
             public Task<T> task;
-            public CancellationTokenSource tokenSource;
+            public CancellationTokenSource TokenSource { get; set; }
             public CancellationToken Token { get; set; }
 
             public CancellableTask(Task<T> task, int ID)
             {
                 this.task = task;
                 this.ID = ID;
-                tokenSource = new CancellationTokenSource(TimeSpan.FromMilliseconds(MAX_TIMEOUT));
-                Token = tokenSource.Token;
+                TokenSource = new CancellationTokenSource(TimeSpan.FromMilliseconds(MAX_TIMEOUT));
+                Token = TokenSource.Token;
             }
         }
 
@@ -609,21 +608,22 @@ namespace AddressablesManagement
         {
             public int ID { get; set; }
             public Task task;
-            public CancellationTokenSource tokenSource;
+            public CancellationTokenSource TokenSource { get; set; }
             public CancellationToken Token { get; set; }
 
             public CancellableTask(Task task, int ID)
             {
                 this.task = task;
                 this.ID = ID;
-                tokenSource = new CancellationTokenSource(TimeSpan.FromMilliseconds(MAX_TIMEOUT));
-                Token = tokenSource.Token;
+                TokenSource = new CancellationTokenSource(TimeSpan.FromMilliseconds(MAX_TIMEOUT));
+                Token = TokenSource.Token;
             }
         }
 
         public interface ICancellableTask
         {
             CancellationToken Token { get; }
+            CancellationTokenSource TokenSource { get; }
         }
     }
 }
