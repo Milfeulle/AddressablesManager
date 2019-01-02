@@ -12,14 +12,16 @@ namespace AddressablesManagement
         public GameObject loneGameObject;
         public GameObject[] testObjects = new GameObject[20];
         public List<Material> materials;
-
+        Sprite sprite;
+        Scene sceneToLoad;
         public Vector3 startingPos;
 
         void Start()
         {
-            materials = new List<Material>(5);
+            materials = new List<Material>(3);
 
-            InstantiateSingleObject("TestObject");
+            //LoadScene();
+            //InstantiateSingleObject("TestObject");
             //TestInstantiateObjects();
             //TestLoadByLabel();
         }
@@ -44,6 +46,26 @@ namespace AddressablesManagement
         async void InstantiateSingleObject(string path)
         {
             loneGameObject = await AddressablesManager.Instance.InstantiateGameObject(path);
+        }
+
+        async void LoadSprite(string path)
+        {
+            sprite = await AddressablesManager.Instance.Load<Sprite>(path);
+        }
+
+        async void LoadScene(string sceneName)
+        {
+            sceneToLoad = await AddressablesManager.Instance.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
+
+        async void OnlyLoadScene(string sceneName)
+        {
+            await AddressablesManager.Instance.LoadScene(sceneName, LoadSceneMode.Additive);
+        }
+
+        async void UnloadScene(Scene scene)
+        {
+            await AddressablesManager.Instance.UnloadScene(scene);
         }
     }
 }

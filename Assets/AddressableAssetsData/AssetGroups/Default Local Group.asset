@@ -36,6 +36,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - materials
+  - m_GUID: f8ca0df254141c7428e9f9f0a254040e
+    m_Address: SceneTest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a36d0d8b283e6614e9d9ca10ec2753a2, type: 2}
   m_SchemaSet:
