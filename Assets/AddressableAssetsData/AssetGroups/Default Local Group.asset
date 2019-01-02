@@ -17,8 +17,27 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 634fe272812d79a46932555fa503704d
   m_SerializeEntries:
+  - m_GUID: 0b2d9e4a3b620b9459dde9b54ea6878e
+    m_Address: Standard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - materials
+  - m_GUID: 27d4788d1d122d64496592c282157ff3
+    m_Address: Test2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - materials
   - m_GUID: 4cca3c9a83480704589b5d435d5e72c5
     m_Address: TestObject
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6461ef3599205694f86991ff5946ebb4
+    m_Address: Test1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - materials
+  - m_GUID: 8837677f583c8f34fbacbc3277bf7f2c
+    m_Address: Assets/Prefabs/Main Camera.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
