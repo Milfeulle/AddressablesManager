@@ -1,4 +1,6 @@
 # AddressablesManager
+Tested with Addressables version 0.5.3.
+
 An easy intermediary for Unity's Addressables system. With this, you can load an asset without having to create a coroutine each time you need to use the Addressables system. This repository is in no way associated with Unity.
 
 For a quick guide on how to setup Addressables, check the [Getting Started guide](https://docs.google.com/document/d/1Qdrhi3NdTR_ub5e1NVjzvijCcVlR56e_zCro41KHfyM/edit#heading=h.zfo4zcp1lrzf) and the [forum post](https://forum.unity.com/threads/addressables-are-here.536304/)
