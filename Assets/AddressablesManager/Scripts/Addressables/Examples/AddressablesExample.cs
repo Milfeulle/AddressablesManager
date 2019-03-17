@@ -14,15 +14,17 @@ namespace AddressablesManagement
         public List<Material> materials;
         Sprite sprite;
         Scene sceneToLoad;
-        public Vector3 startingPos;
+        private Vector3 startingPos;
 
         void Start()
         {
             materials = new List<Material>(3);
 
+            startingPos = transform.position;
+
             //LoadScene();
             //InstantiateSingleObject("TestObject");
-            //TestInstantiateObjects();
+            TestInstantiateObjects();
             //TestLoadByLabel();
         }
 

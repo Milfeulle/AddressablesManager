@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.unity.addressables": "0.5.3-preview",
+    "com.unity.addressables": "0.6.7-preview",
     "com.unity.ads": "2.3.1",
     "com.unity.analytics": "3.2.2",
     "com.unity.collab-proxy": "1.2.15",

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.ResourceManagement;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 /// <summary>
 /// Script cleaned up and taken from https://forum.unity.com/threads/async-await-support-for-loading-assets.538898/

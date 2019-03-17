@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 namespace AddressablesManagement
@@ -99,7 +100,8 @@ namespace AddressablesManagement
         public async Task<GameObject> InstantiateGameObject(string path, Vector3 position, Quaternion rotation)
         {
             GameObject GO = null;
-            GO = await Addressables.Instantiate<GameObject>(path, position, rotation);
+
+            GO = await Addressables.Instantiate(path, position, rotation) as GameObject;
             return GO;
         }
 
@@ -111,7 +113,8 @@ namespace AddressablesManagement
         public async Task<GameObject> InstantiateGameObject(string path)
         {
             GameObject GO = null;
-            GO = await Addressables.Instantiate<GameObject>(path, Vector3.zero, Quaternion.identity);
+
+            GO = await Addressables.Instantiate(path, Vector3.zero, Quaternion.identity) as GameObject;
             return GO;
         }
 
