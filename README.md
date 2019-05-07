@@ -1,5 +1,5 @@
 # AddressablesManager
-Tested with Addressables version 0.6.7.
+Tested with Addressables version 0.7.5.
 
 An unofficial intermediary for Unity's Addressables system. With this, you can load an asset without having to make use of a coroutine each time you need to use the Addressables system.
 
@@ -84,6 +84,6 @@ You can unload scenes you hold a reference to.
 ```c#
 async void UnloadScene()
 {
-    await AddressablesManager.Instance.UnloadScene(sceneToLoad);
+    AddressablesManager.Instance.UnloadScene(sceneToLoad);
 }
 ```
