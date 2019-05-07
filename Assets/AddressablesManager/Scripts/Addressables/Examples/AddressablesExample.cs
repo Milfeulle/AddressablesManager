@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace AddressablesManagement
 {
@@ -22,9 +23,9 @@ namespace AddressablesManagement
 
             startingPos = transform.position;
 
-            //LoadScene();
+            LoadScene("SceneTest");
             //InstantiateSingleObject("TestObject");
-            TestInstantiateObjects();
+            //TestInstantiateObjects();
             //TestLoadByLabel();
         }
 
@@ -56,8 +57,8 @@ namespace AddressablesManagement
         }
 
         async void LoadScene(string sceneName)
-        {
-            sceneToLoad = await AddressablesManager.Instance.LoadScene(sceneName, LoadSceneMode.Additive);
+        {            
+            sceneToLoad = await AddressablesManager.Instance.LoadScene(sceneName, LoadSceneMode.Single);
         }
 
         async void OnlyLoadScene(string sceneName)
@@ -65,7 +66,7 @@ namespace AddressablesManagement
             await AddressablesManager.Instance.LoadScene(sceneName, LoadSceneMode.Additive);
         }
 
-        async void UnloadScene(Scene scene)
+        async void UnloadScene(SceneInstance scene)
         {
             await AddressablesManager.Instance.UnloadScene(scene);
         }

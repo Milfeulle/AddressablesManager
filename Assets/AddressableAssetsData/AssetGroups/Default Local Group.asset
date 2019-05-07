@@ -15,27 +15,8 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 634fe272812d79a46932555fa503704d
+  m_GUID: c595b3a18986fc844b54af17886b6b92
   m_SerializeEntries:
-  - m_GUID: 0b2d9e4a3b620b9459dde9b54ea6878e
-    m_Address: Standard
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - materials
-  - m_GUID: 27d4788d1d122d64496592c282157ff3
-    m_Address: Test2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - materials
-  - m_GUID: 4cca3c9a83480704589b5d435d5e72c5
-    m_Address: TestObject
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6461ef3599205694f86991ff5946ebb4
-    m_Address: Test1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - materials
   - m_GUID: f8ca0df254141c7428e9f9f0a254040e
     m_Address: SceneTest
     m_ReadOnly: 0
@@ -44,5 +25,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: a36d0d8b283e6614e9d9ca10ec2753a2, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8128c2c30233d0042a9f7bd5f0aad5f5, type: 2}
-    - {fileID: 11400000, guid: 05db5eba1a2139d4cb53b59f2208517d, type: 2}
+    - {fileID: 11400000, guid: 85d6ac9c02d87c843a171b8cdc29ee6f, type: 2}
+    - {fileID: 11400000, guid: 9812830898ccd96459a68801ce7480ec, type: 2}

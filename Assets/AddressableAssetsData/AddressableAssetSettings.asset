@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 634fe272812d79a46932555fa503704d
-  m_groups: []
+  m_DefaultGroup: c595b3a18986fc844b54af17886b6b92
+  m_BuildRemoteCatalog: 0
+  m_RemoteCatalogBuildPath:
+    m_Id: 
+  m_RemoteCatalogLoadPath:
+    m_Id: 
+  m_overridePlayerVersion: 
   m_GroupAssets:
   - {fileID: 11400000, guid: 070999b871470bd4b8e747d35cc6b328, type: 2}
   - {fileID: 11400000, guid: 65399f457898a5b4599033c2253e10dd, type: 2}
@@ -25,50 +30,42 @@ MonoBehaviour:
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: 0b6f709cc7a6ac54c92eaa3dfd0ced6c
+      m_Id: 44d9c75fea9896442890d896b9c15911
       m_ProfileName: Default
       m_Values:
-      - m_Id: 8edbaebd87d867648a3440e641d36bf9
+      - m_Id: b1765cf0ec466a84295caaec32eabbf4
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 6e7defacb22b9a843a6b19bf6f930506
-        m_Value: Assets/StreamingAssets/com.unity.addressables/[BuildTarget]
-      - m_Id: 1673e2662062c6a4fb136803b03e5533
+      - m_Id: 9f81c36455e81bc41ba4fae4157f801f
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 47399fbd5bfad144699cafb2f740ce2a
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 598f976a2d1095449a4f7c967d7a9db9
+      - m_Id: 6aa08c6629e3f0444961b5c4b5ebf0f2
         m_Value: ServerData/[BuildTarget]
-      - m_Id: 6a333bf107e3b104880bf2d5208d7778
+      - m_Id: e9306b7057339c048ba164ef7fa24a22
         m_Value: http://localhost/[BuildTarget]
     m_ProfileEntryNames:
-    - m_Id: 8edbaebd87d867648a3440e641d36bf9
+    - m_Id: b1765cf0ec466a84295caaec32eabbf4
       m_Name: BuildTarget
       m_InlineUsage: 0
-    - m_Id: 6e7defacb22b9a843a6b19bf6f930506
+    - m_Id: 9f81c36455e81bc41ba4fae4157f801f
       m_Name: LocalBuildPath
       m_InlineUsage: 0
-    - m_Id: 1673e2662062c6a4fb136803b03e5533
+    - m_Id: 47399fbd5bfad144699cafb2f740ce2a
       m_Name: LocalLoadPath
       m_InlineUsage: 0
-    - m_Id: 598f976a2d1095449a4f7c967d7a9db9
+    - m_Id: 6aa08c6629e3f0444961b5c4b5ebf0f2
       m_Name: RemoteBuildPath
       m_InlineUsage: 0
-    - m_Id: 6a333bf107e3b104880bf2d5208d7778
+    - m_Id: e9306b7057339c048ba164ef7fa24a22
       m_Name: RemoteLoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
     - default
-    - materials
-  m_SchemaTemplates:
-  - m_DisplayName: Packed Assets
-    m_Description: Pack assets into asset bundles.
-    m_SchemaTypes:
-    - m_AssemblyName: Unity.Addressables.Editor, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      m_ClassName: UnityEditor.AddressableAssets.BundledAssetGroupSchema
-    - m_AssemblyName: Unity.Addressables.Editor, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      m_ClassName: UnityEditor.AddressableAssets.ContentUpdateGroupSchema
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: f94d9c8e71fd73f478fd4aa0152471cb, type: 2}
   m_InitializationObjects: []
   m_ActivePlayerDataBuilderIndex: 3
   m_ActivePlayModeDataBuilderIndex: 0
@@ -77,7 +74,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29bb6314dea545e4fa14b0924c4388f2, type: 2}
   - {fileID: 11400000, guid: ceefb45a8d7c94c4cbb1161f5cebe885, type: 2}
   - {fileID: 11400000, guid: 51460a20ddd7f094e91d04fea92db360, type: 2}
-  m_ActiveProfileId: 0b6f709cc7a6ac54c92eaa3dfd0ced6c
+  m_ActiveProfileId: 44d9c75fea9896442890d896b9c15911
   m_HostingServicesManager:
     m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}

@@ -17,6 +17,7 @@ namespace AddressablesManagement
         private static AddressablesManager _instance;
 
         private bool _currentlyLoading;
+        private Scene _currentlyLoadingScene;
 
         #region PROPERTIES
         /// <summary>
@@ -64,11 +65,27 @@ namespace AddressablesManagement
         /// </summary>
         /// <param name="sceneName">Name of the scene to load.</param>
         /// <param name="loadMode">Scene load mode.</param>
-        public async Task<Scene> LoadScene(string sceneName, LoadSceneMode loadMode)
+        public Task<Scene> LoadScene(string sceneName, LoadSceneMode loadMode)
         {
-            Scene newScene;
-            newScene = (Scene)await Addressables.LoadScene(sceneName, loadMode);
-            return newScene;
+            _currentlyLoadingScene = default;
+            _currentlyLoadingScene.name = "";            
+
+            Addressables.LoadScene(sceneName, loadMode).Completed += AddressablesManager_OnSceneLoadCompleted;
+
+            if (string.IsNullOrEmpty(_currentlyLoadingScene.name))
+            {
+                Task.Delay(1);
+            }
+
+            return Task.Run(() => _currentlyLoadingScene);
+        }
+
+        private void AddressablesManager_OnSceneLoadCompleted(AsyncOperationHandle<SceneInstance> obj)
+        {
+            if (obj.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            {
+                _currentlyLoadingScene = obj.Result.Scene;
+            }
         }
 
         /// <summary>
@@ -78,16 +95,16 @@ namespace AddressablesManagement
         /// <param name="loadMode">Scene load mode.</param>
         public async Task OnlyLoadScene(string sceneName, LoadSceneMode loadMode)
         {
-            await Addressables.LoadScene(sceneName, loadMode);
+            await Task.Run(() => Addressables.LoadScene(sceneName, loadMode));
         }
 
         /// <summary>
         /// Unloads a given scene from memory asynchronously.
         /// </summary>
         /// <param name="scene">Scene object to unload.</param>
-        public async Task UnloadScene(Scene scene)
+        public async Task UnloadScene(SceneInstance scene)
         {
-            await Addressables.UnloadScene(scene);
+            Addressables.UnloadScene(scene);
         }
 
         /// <summary>
@@ -170,7 +187,7 @@ namespace AddressablesManagement
         public void ReleaseAsset<T>(ref T obj) where T : class
         {
             if (obj != null)
-                Addressables.ReleaseAsset(obj);
+                Addressables.Release(obj);
         }
         #endregion
 
