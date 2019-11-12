@@ -9,6 +9,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace AddressablesManagement
 {
@@ -70,7 +71,7 @@ namespace AddressablesManagement
             _currentlyLoadingScene = default;
             _currentlyLoadingScene.name = "";            
 
-            Addressables.LoadScene(sceneName, loadMode).Completed += AddressablesManager_OnSceneLoadCompleted;
+            Addressables.LoadSceneAsync(sceneName, loadMode).Completed += AddressablesManager_OnSceneLoadCompleted;
 
             if (string.IsNullOrEmpty(_currentlyLoadingScene.name))
             {
@@ -95,7 +96,7 @@ namespace AddressablesManagement
         /// <param name="loadMode">Scene load mode.</param>
         public async Task OnlyLoadScene(string sceneName, LoadSceneMode loadMode)
         {
-            await Task.Run(() => Addressables.LoadScene(sceneName, loadMode));
+            await Task.Run(() => Addressables.LoadSceneAsync(sceneName, loadMode));
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace AddressablesManagement
         /// <param name="scene">Scene object to unload.</param>
         public async Task UnloadScene(SceneInstance scene)
         {
-            Addressables.UnloadScene(scene);
+            Addressables.UnloadSceneAsync(scene);
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace AddressablesManagement
         {
             GameObject GO = null;
 
-            GO = await Addressables.Instantiate(path, position, rotation) as GameObject;
+            GO = await Addressables.InstantiateAsync(path, position, rotation) as GameObject;
             return GO;
         }
 
@@ -131,7 +132,7 @@ namespace AddressablesManagement
         {
             GameObject GO = null;
 
-            GO = await Addressables.Instantiate(path, Vector3.zero, Quaternion.identity) as GameObject;
+            GO = await Addressables.InstantiateAsync(path, Vector3.zero, Quaternion.identity) as GameObject;
             return GO;
         }
 
@@ -144,7 +145,7 @@ namespace AddressablesManagement
         public async Task<T> Load<T>(string path) where T : class
         {
             T anyObj = null;
-            anyObj = await Addressables.LoadAsset<T>(path);
+            anyObj = await Addressables.LoadAssetAsync<T>(path);
             return anyObj;
         }
 
@@ -154,7 +155,7 @@ namespace AddressablesManagement
         /// <param name="path">Path of the object to load dependencies from.</param>
         public async Task DownloadDependencies(string path)
         {
-            await Addressables.DownloadDependencies(path);
+            await Addressables.DownloadDependenciesAsync(path);
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace AddressablesManagement
         public async Task<List<T>> LoadAssetsByLabel<T>(string label) where T : class
         {
             IList<T> objects = new List<T>(100);
-            objects = await Addressables.LoadAssets<T>(label, null);
+            objects = await Addressables.LoadAssetsAsync<T>(label, null);
             return (List<T>)objects;            
         }
 

@@ -15,15 +15,15 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: c595b3a18986fc844b54af17886b6b92
+  m_GUID: dd8a104a25facad40b051148432ecd84
   m_SerializeEntries:
-  - m_GUID: f8ca0df254141c7428e9f9f0a254040e
-    m_Address: SceneTest
+  - m_GUID: 4cca3c9a83480704589b5d435d5e72c5
+    m_Address: TestObject
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a36d0d8b283e6614e9d9ca10ec2753a2, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 85d6ac9c02d87c843a171b8cdc29ee6f, type: 2}
-    - {fileID: 11400000, guid: 9812830898ccd96459a68801ce7480ec, type: 2}
+    - {fileID: 11400000, guid: 073f193860bb5044faf57dd6eb273155, type: 2}
+    - {fileID: 11400000, guid: 6ae9e9e73e5a1d74d81aef2d1621d1e4, type: 2}

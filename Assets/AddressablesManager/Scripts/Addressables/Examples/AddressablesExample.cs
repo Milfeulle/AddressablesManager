@@ -23,9 +23,9 @@ namespace AddressablesManagement
 
             startingPos = transform.position;
 
-            LoadScene("SceneTest");
+            //LoadScene("SceneTest");
             //InstantiateSingleObject("TestObject");
-            //TestInstantiateObjects();
+            TestInstantiateObjects();
             //TestLoadByLabel();
         }
 
