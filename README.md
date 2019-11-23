@@ -1,5 +1,5 @@
 # AddressablesManager
-Tested with Addressables version 0.7.5.
+Tested with Addressables version 1.3.
 
 An unofficial intermediary for Unity's Addressables system. With this, you can load an asset without having to make use of a coroutine each time you need to use the Addressables system.
 
