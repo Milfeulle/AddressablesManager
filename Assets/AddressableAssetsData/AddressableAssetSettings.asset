@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultGroup: dd8a104a25facad40b051148432ecd84
   m_BuildRemoteCatalog: 0
+  m_DisableCatalogUpdateOnStart: 0
   m_UniqueBundleIds: 0
   m_RemoteCatalogBuildPath:
     m_Id: 
@@ -23,6 +24,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 070999b871470bd4b8e747d35cc6b328, type: 2}
   - {fileID: 11400000, guid: 65399f457898a5b4599033c2253e10dd, type: 2}
+  - {fileID: 11400000, guid: 092ece156c763bc4a81d9175733c8ccd, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1

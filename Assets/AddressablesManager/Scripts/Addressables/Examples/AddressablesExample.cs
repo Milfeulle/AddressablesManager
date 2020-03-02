@@ -13,6 +13,7 @@ namespace AddressablesManagement
         public GameObject loneGameObject;
         public GameObject[] testObjects = new GameObject[20];
         public List<Material> materials;
+        public List<string> listTest;
         Sprite sprite;
         Scene sceneToLoad;
         private Vector3 startingPos;
@@ -27,6 +28,7 @@ namespace AddressablesManagement
             //InstantiateSingleObject("TestObject");
             TestInstantiateObjects();
             //TestLoadByLabel();
+            //LoadFromList(listTest);
         }
 
         async void TestLoadByLabel()
@@ -69,6 +71,16 @@ namespace AddressablesManagement
         async void UnloadScene(SceneInstance scene)
         {
             await AddressablesManager.Instance.UnloadScene(scene);
+        }
+
+        async void LoadFromList(List<string> testList)
+        {
+            List<GameObject> GOs = await AddressablesManager.Instance.LoadFromList<GameObject>(testList);
+
+            foreach (GameObject go in GOs)
+            {
+                Instantiate(go);
+            }
         }
     }
 }

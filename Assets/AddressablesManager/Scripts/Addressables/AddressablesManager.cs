@@ -10,6 +10,7 @@ using UnityEngine.ResourceManagement;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Linq;
 
 namespace AddressablesManagement
 {
@@ -117,10 +118,7 @@ namespace AddressablesManagement
         /// <returns>Returns the gameobject set to instantiate.</returns>
         public async Task<GameObject> InstantiateGameObject(string path, Vector3 position, Quaternion rotation)
         {
-            GameObject GO = null;
-
-            GO = await Addressables.InstantiateAsync(path, position, rotation) as GameObject;
-            return GO;
+            return await Addressables.InstantiateAsync(path, position, rotation) as GameObject;
         }
 
         /// <summary>
@@ -130,10 +128,7 @@ namespace AddressablesManagement
         /// <returns>Returns the gameobject set to instantiate.</returns>
         public async Task<GameObject> InstantiateGameObject(string path)
         {
-            GameObject GO = null;
-
-            GO = await Addressables.InstantiateAsync(path, Vector3.zero, Quaternion.identity) as GameObject;
-            return GO;
+            return await Addressables.InstantiateAsync(path, Vector3.zero, Quaternion.identity) as GameObject; ;
         }
 
         /// <summary>
@@ -144,9 +139,7 @@ namespace AddressablesManagement
         /// <returns>Returns an object of type T.</returns>
         public async Task<T> Load<T>(string path) where T : class
         {
-            T anyObj = null;
-            anyObj = await Addressables.LoadAssetAsync<T>(path);
-            return anyObj;
+            return await Addressables.LoadAssetAsync<T>(path);
         }
 
         /// <summary>
@@ -163,12 +156,25 @@ namespace AddressablesManagement
         /// </summary>
         /// <typeparam name="T">Type of the objects to load.</typeparam>
         /// <param name="label">Label in the Addressables of the objects to load.</param>
+        /// <param name="callback">Callback to execute after loading</param>
         /// <returns>Returns a list with elements of type T.</returns>
-        public async Task<List<T>> LoadAssetsByLabel<T>(string label) where T : class
+        public async Task<List<T>> LoadAssetsByLabel<T>(string label, Action<T> callback = null) where T : class
         {
-            IList<T> objects = new List<T>(100);
-            objects = await Addressables.LoadAssetsAsync<T>(label, null);
-            return (List<T>)objects;            
+            return await Addressables.LoadAssetsAsync<T>(label, callback) as List<T>;
+        }
+
+        /// <summary>
+        /// Loads all assets from a given list into memory
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="labels">List of labels to load</param>
+        /// <param name="callback">Callback to execute after loading</param>
+        /// <param name="mergeMode">Assets merge mode. For more information, visit https://docs.unity3d.com/Packages/com.unity.addressables@0.4/api/UnityEngine.AddressableAssets.Addressables.MergeMode.html?q=mergemode</param>
+        /// <returns>Returns a list with elements of type T.</returns>
+        public async Task<List<T>> LoadFromList<T>(List<string> labels, Action<T> callback = null, Addressables.MergeMode mergeMode = Addressables.MergeMode.None) where T : class
+        {
+            List<object> labelsAsObjects = labels.Cast<object>().ToList();
+            return await Addressables.LoadAssetsAsync<T>(labelsAsObjects, callback, mergeMode) as List<T>;
         }
 
         /// <summary>

@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: TestObject
     m_ReadOnly: 0
     m_SerializedLabels: []
+    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - m_GUID: eefe4b0611151704d9f75e91b40b5065
+    m_Address: TestSphere
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a36d0d8b283e6614e9d9ca10ec2753a2, type: 2}
   m_SchemaSet:
